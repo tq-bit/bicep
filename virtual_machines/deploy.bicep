@@ -1,37 +1,38 @@
 param location string = resourceGroup().location
+param vmPrefix string = 'az104-configure-network-peering-01'
 
 param virtualNetworks array = [
   {
-    id: 'az104-configure-network-peering-01-vn01'
+    id: '${vmPrefix}-vn01'
     name: 'MarketingVnet'
     prefix: '10.2.0.0/16'
     subnets: [
       {
-        id: 'az104-configure-network-peering-01-vn01-sub01'
+        id: '${vmPrefix}-vn01-sub01'
         name: 'MarketingAppsSubnet'
         prefix: '10.2.0.0/24'
       }
     ]
   }
   {
-    id: 'az104-configure-network-peering-01-vn02'
+    id: '${vmPrefix}-vn02'
     name: 'ResearchVnet'
     prefix: '10.3.0.0/16'
     subnets: [
       {
-        id: 'az104-configure-network-peering-01-vn02-sub01'
+        id: '${vmPrefix}-vn02-sub01'
         name: 'ResearchAppsSubnet'
         prefix: '10.3.0.0/24'
       }
     ]
   }
   {
-    id: 'az104-configure-network-peering-01-vn03'
+    id: '${vmPrefix}-vn03'
     name: 'SalesVnet'
     prefix: '10.4.0.0/16'
     subnets: [
       {
-        id: 'az104-configure-network-peering-01-vn03-sub01'
+        id: '${vmPrefix}-vn03-sub01'
         name: 'SalesAppsSubnet'
         prefix: '10.4.0.0/24'
       }
@@ -41,19 +42,19 @@ param virtualNetworks array = [
 
 param virtualMachines array = [
   {
-    name: 'az104-configure-network-peering-01-vm01'
+    name: '${vmPrefix}-vm01'
     adminUsername: 'azureuser'
     adminPassword: '321@erurA!bcs'
     subnetDestination: 'MarketingAppsSubnet'
   }
   {
-    name: 'az104-configure-network-peering-01-vm02'
+    name: '${vmPrefix}-vm02'
     adminUsername: 'azureuser'
     adminPassword: '321@erurA!bcs'
     subnetDestination: 'ResearchAppsSubnet'
   }
   {
-    name: 'az104-configure-network-peering-01-vm03'
+    name: '${vmPrefix}-vm03'
     adminUsername: 'azureuser'
     adminPassword: '321@erurA!bcs'
     subnetDestination: 'SalesAppsSubnet'
@@ -61,9 +62,9 @@ param virtualMachines array = [
 ]
 
 // param virtualMachineNics array = [
-//   'az104-configure-network-peering-01-vm01-nic01'
-//   'az104-configure-network-peering-01-vm02-nic01'
-//   'az104-configure-network-peering-01-vm03-nic01'
+//   '${vmPrefix}-vm01-nic01'
+//   '${vmPrefix}-vm02-nic01'
+//   '${vmPrefix}-vm03-nic01'
 // ]
 
 resource VirtualNetworks 'Microsoft.Network/virtualNetworks@2023-09-01' = [
